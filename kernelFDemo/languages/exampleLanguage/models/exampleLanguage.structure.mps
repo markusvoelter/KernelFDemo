@@ -118,6 +118,13 @@
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="7kDRlSZ$h5Z" resolve="Event" />
     </node>
+    <node concept="1TJgyj" id="25qenauXilO" role="1TKVEi">
+      <property role="IQ2ns" value="2403296515611501940" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="setters" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
+      <ref role="20lvS9" node="25qenauWWVZ" resolve="AttrSetter" />
+    </node>
   </node>
   <node concept="1TIwiD" id="25qenauUuec">
     <property role="EcuMT" value="2403296515610764172" />
@@ -171,6 +178,46 @@
       <property role="20kJfa" value="event" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="7kDRlSZ$h5Z" resolve="Event" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="25qenauWFwv">
+    <property role="EcuMT" value="2403296515611342879" />
+    <property role="TrG5h" value="Attribute" />
+    <property role="34LRSv" value="attribute" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="25qenauWFww" role="PzmwI">
+      <ref role="PrY4T" node="7kDRlSZ$h3Q" resolve="IStatemachineContent" />
+    </node>
+    <node concept="PrWs8" id="25qenauWFw_" role="PzmwI">
+      <ref role="PrY4T" to="hm2y:68xoVn7qAL8" resolve="ITyped" />
+    </node>
+    <node concept="PrWs8" id="25qenauWFwH" role="PzmwI">
+      <ref role="PrY4T" to="4kwy:cJpacq5T0O" resolve="IValidNamedConcept" />
+    </node>
+    <node concept="1TJgyj" id="25qenauXZ4o" role="1TKVEi">
+      <property role="IQ2ns" value="2403296515611685144" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="initialValue" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" to="hm2y:6sdnDbSla17" resolve="Expression" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="25qenauWWVZ">
+    <property role="EcuMT" value="2403296515611414271" />
+    <property role="TrG5h" value="AttrSetter" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="25qenauWWW0" role="1TKVEi">
+      <property role="IQ2ns" value="2403296515611414272" />
+      <property role="20kJfa" value="attr" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="25qenauWFwv" resolve="Attribute" />
+    </node>
+    <node concept="1TJgyj" id="25qenauWWWs" role="1TKVEi">
+      <property role="IQ2ns" value="2403296515611414300" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="value" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" to="hm2y:6sdnDbSla17" resolve="Expression" />
     </node>
   </node>
 </model>

@@ -9,6 +9,7 @@
     <import index="xfg9" ref="r:ac28053f-2041-47f6-806b-ecfaca05a64a(org.iets3.core.expr.base.runtime.runtime)" />
     <import index="exai" ref="r:e76b851e-4f7a-4bcf-9f11-e2353e4050ee(exampleLanguage.structure)" implicit="true" />
     <import index="pbu6" ref="r:83e946de-2a7f-4a4c-b3c9-4f671aa7f2db(org.iets3.core.expr.base.behavior)" implicit="true" />
+    <import index="hm2y" ref="r:66e07cb4-a4b0-4bf3-a36d-5e9ed1ff1bd3(org.iets3.core.expr.base.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -89,6 +90,7 @@
         <child id="1174660783413" name="leftExpression" index="1ZfhK$" />
         <child id="1174660783414" name="rightExpression" index="1ZfhKB" />
       </concept>
+      <concept id="1174663118805" name="jetbrains.mps.lang.typesystem.structure.CreateLessThanInequationStatement" flags="nn" index="1ZobV4" />
     </language>
     <language id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel">
       <concept id="1177026924588" name="jetbrains.mps.lang.smodel.structure.RefConcept_Reference" flags="nn" index="chp4Y">
@@ -270,6 +272,46 @@
     <node concept="1YaCAy" id="25qenauW52m" role="1YuTPh">
       <property role="TrG5h" value="triggerOp" />
       <ref role="1YaFvo" to="exai:25qenauW50C" resolve="TriggerOp" />
+    </node>
+  </node>
+  <node concept="1YbPZF" id="25qenauWWYv">
+    <property role="TrG5h" value="typeof_AttrSetter" />
+    <node concept="3clFbS" id="25qenauWWYw" role="18ibNy">
+      <node concept="1ZobV4" id="25qenauWXtY" role="3cqZAp">
+        <node concept="mw_s8" id="25qenauWXum" role="1ZfhKB">
+          <node concept="1Z2H0r" id="25qenauWXui" role="mwGJk">
+            <node concept="2OqwBi" id="25qenauWXZT" role="1Z2MuG">
+              <node concept="2OqwBi" id="25qenauWXAf" role="2Oq$k0">
+                <node concept="1YBJjd" id="25qenauWXuB" role="2Oq$k0">
+                  <ref role="1YBMHb" node="25qenauWWYy" resolve="attrSetter" />
+                </node>
+                <node concept="3TrEf2" id="25qenauWXLu" role="2OqNvi">
+                  <ref role="3Tt5mk" to="exai:25qenauWWW0" resolve="attr" />
+                </node>
+              </node>
+              <node concept="3TrEf2" id="25qenauWYmn" role="2OqNvi">
+                <ref role="3Tt5mk" to="hm2y:7D7uZV2iYAD" resolve="type" />
+              </node>
+            </node>
+          </node>
+        </node>
+        <node concept="mw_s8" id="25qenauWXu1" role="1ZfhK$">
+          <node concept="1Z2H0r" id="25qenauWWYA" role="mwGJk">
+            <node concept="2OqwBi" id="25qenauWX8_" role="1Z2MuG">
+              <node concept="1YBJjd" id="25qenauWX0u" role="2Oq$k0">
+                <ref role="1YBMHb" node="25qenauWWYy" resolve="attrSetter" />
+              </node>
+              <node concept="3TrEf2" id="25qenauWXiG" role="2OqNvi">
+                <ref role="3Tt5mk" to="exai:25qenauWWWs" resolve="value" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node concept="1YaCAy" id="25qenauWWYy" role="1YuTPh">
+      <property role="TrG5h" value="attrSetter" />
+      <ref role="1YaFvo" to="exai:25qenauWWVZ" resolve="AttrSetter" />
     </node>
   </node>
 </model>

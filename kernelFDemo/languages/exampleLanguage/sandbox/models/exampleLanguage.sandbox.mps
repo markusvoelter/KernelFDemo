@@ -12,6 +12,9 @@
       <concept id="7089558164905593724" name="org.iets3.core.expr.base.structure.IOptionallyTyped" flags="ng" index="2zM23E">
         <child id="7089558164905593725" name="type" index="2zM23F" />
       </concept>
+      <concept id="7071042522334260296" name="org.iets3.core.expr.base.structure.ITyped" flags="ng" index="2_iKZX">
+        <child id="8811147530085329321" name="type" index="2S399n" />
+      </concept>
       <concept id="5115872837156802409" name="org.iets3.core.expr.base.structure.UnaryExpression" flags="ng" index="30czhk">
         <child id="5115872837156802411" name="expr" index="30czhm" />
       </concept>
@@ -37,6 +40,7 @@
     </language>
     <language id="6b277d9a-d52d-416f-a209-1919bd737f50" name="org.iets3.core.expr.simpleTypes">
       <concept id="7425695345928358745" name="org.iets3.core.expr.simpleTypes.structure.TrueLiteral" flags="ng" index="2vmpnb" />
+      <concept id="5115872837157054169" name="org.iets3.core.expr.simpleTypes.structure.IntegerType" flags="ng" index="30bXR$" />
       <concept id="5115872837157054170" name="org.iets3.core.expr.simpleTypes.structure.NumberLiteral" flags="ng" index="30bXRB">
         <property id="5115872837157054173" name="value" index="30bXRw" />
       </concept>
@@ -59,6 +63,13 @@
       </concept>
     </language>
     <language id="61990d83-6a7b-4db6-b20b-d3194b5072d8" name="exampleLanguage">
+      <concept id="2403296515611342879" name="exampleLanguage.structure.Attribute" flags="ng" index="2ZE85H">
+        <child id="2403296515611685144" name="initialValue" index="2ZFsxE" />
+      </concept>
+      <concept id="2403296515611414271" name="exampleLanguage.structure.AttrSetter" flags="ng" index="2ZEvud">
+        <reference id="2403296515611414272" name="attr" index="2ZEvpM" />
+        <child id="2403296515611414300" name="value" index="2ZEvpI" />
+      </concept>
       <concept id="2403296515611185192" name="exampleLanguage.structure.TriggerOp" flags="ng" index="2ZEA_q">
         <reference id="2403296515610890280" name="event" index="2ZGu_q" />
       </concept>
@@ -82,6 +93,7 @@
       <concept id="8442522373345841664" name="exampleLanguage.structure.Transition" flags="ng" index="1aIcXu">
         <reference id="8442522373345841740" name="target" index="1aIcWi" />
         <reference id="8442522373345841665" name="event" index="1aIcXv" />
+        <child id="2403296515611501940" name="setters" index="2ZFLK6" />
       </concept>
     </language>
     <language id="9464fa06-5ab9-409b-9274-64ab29588457" name="org.iets3.core.expr.lambda">
@@ -111,6 +123,13 @@
     <ref role="2HwdWd" node="7kDRlSZ$bH4" resolve="HelloWorld" />
     <node concept="1aIcQO" id="7kDRlSZ$KH6" role="_iOnB">
       <property role="TrG5h" value="TrafficLight" />
+      <node concept="2ZE85H" id="25qenauWWV2" role="1aIcQD">
+        <property role="TrG5h" value="a" />
+        <node concept="30bXR$" id="25qenauWWVS" role="2S399n" />
+        <node concept="30bXRB" id="25qenauYp11" role="2ZFsxE">
+          <property role="30bXRw" value="0" />
+        </node>
+      </node>
       <node concept="1aIcKx" id="7kDRlSZ$KZc" role="1aIcQD">
         <property role="TrG5h" value="buttonPressed" />
       </node>
@@ -120,6 +139,12 @@
         <node concept="1aIcXu" id="7kDRlSZ$KZz" role="1aI100">
           <ref role="1aIcXv" node="7kDRlSZ$KZc" resolve="buttonPressed" />
           <ref role="1aIcWi" node="7kDRlSZ$KZj" resolve="red" />
+          <node concept="2ZEvud" id="25qenauXZ3C" role="2ZFLK6">
+            <ref role="2ZEvpM" node="25qenauWWV2" resolve="a" />
+            <node concept="30bXRB" id="25qenauXZ3T" role="2ZEvpI">
+              <property role="30bXRw" value="1" />
+            </node>
+          </node>
         </node>
       </node>
       <node concept="1aIcQJ" id="7kDRlSZ$KZj" role="1aIcQD">
