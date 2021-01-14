@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>kernelFDemo</groupId>
+    <artifactId>kernelFDemo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <mps.version>2020.2.3</mps.version>
+        <iets3.version>2020.2.4708.ad42f77</iets3.version>
+        <mbeddr.version>2020.2.22643.153e10a</mbeddr.version>
+        <dependencies.root>${project.build.directory}/dependency</dependencies.root>
+        <mps.home>${dependencies.root}/mps</mps.home>
+        <build.allScripts.xml>${project.build.directory}/../build/build-allScripts.xml</build.allScripts.xml>
+        <build.xml>${project.build.directory}/generated-ant-scripts/build.xml</build.xml>
+        <mps.build.dir>${project.build.directory}/mps-build</mps.build.dir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.iets3</groupId>
+            <artifactId>opensource</artifactId>
+            <version>${iets3.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>com.mbeddr</groupId>
+            <artifactId>platform</artifactId>
+            <version>${mbeddr.version}</version>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>unpack-dependencies</goal></goals>
+                        <configuration>
+                            <outputDirectory>${dependencies.root}</outputDirectory>
+                            <type>zip</type>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-mps</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>unpack</goal></goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.jetbrains</groupId>
+                                    <artifactId>mps</artifactId>
+                                    <version>${mps.version}</version>
+                                    <type>zip</type>
+                                    <outputDirectory>${mps.home}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>ant-clean</id>
+                        <phase>pre-clean</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+								<echo message="*** Cleaning ${project.artifactId} ***" />
+                                <delete includeemptydirs="true">
+                                    <fileset dir="${project.basedir}" followsymlinks="false">
+                                        <include name="**/source_gen/**" />
+                                        <include name="**/source_gen.caches/**" />
+                                        <include name="**/classes_gen/**" />
+                                        <include name="**/classes_gen.caches/**" />
+                                        <include name="**/test_gen/**" />
+                                        <include name="**/test_gen.caches/**" />
+                                    </fileset>
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+						<id>ant-generate-sources-language</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+								<echo message="*** Generating sources for ${project.artifactId} ***" />
+                                <ant antfile="${build.allScripts.xml}" target="generate" useNativeBasedir="true">
+                                    <property name="build.dir" location="${mps.build.dir}" />
+                                </ant>
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+						<id>ant-build-language</id>
+                        <phase>compile</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+								<echo message="*** Building ${project.version} ***" />
+                                <ant antfile="${build.xml}">
+                                    <target name="generate" />
+                                    <target name="assemble" />
+                                    <property name="build.dir" location="${mps.build.dir}" />
+                                    <property name="plugin.version" value="${project.version}" />
+                                </ant>
+                                <echo message="Finished building main sources" />
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+						<id>ant-pack-language</id>
+                        <phase>package</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>                              
+								<attachartifact file="${mps.build.dir}/artifacts/steuer-poc/steuer-poc.zip" type="zip" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-junit</artifactId>
+                        <version>1.9.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>itemis</id>
+            <name>itemis</name>
+            <url>https://projects.itemis.de/nexus/content/repositories/mbeddr</url>
+        </repository>
+    </repositories>
+</project>
